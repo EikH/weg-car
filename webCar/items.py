@@ -25,6 +25,8 @@ class WebcarDataItem(scrapy.Item):
     afterSalesTel = scrapy.Field()
     # 营业时间
     businessHours = scrapy.Field()
+    # 公司全称
+    companyName = scrapy.Field()
 
 
 

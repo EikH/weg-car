@@ -7,7 +7,7 @@ from ..items import WebcarDataItem
 # 别克网页
 class BiekeSpider(scrapy.Spider):
     name = "bieke"
-    allowed_domains = ["https://static.buick.com.cn"]
+    allowed_domains = ["static.buick.com.cn"]
     start_urls = ["https://static.buick.com.cn/resource/dealer.json"]
 
     def parse(self, response):
@@ -19,7 +19,8 @@ class BiekeSpider(scrapy.Spider):
             webCar_data_item['dealerName'] = i['dealerName']
             webCar_data_item['provinces'] = i['provinceName']
             webCar_data_item['city'] = i['cityName']
-            webCar_data_item['districtName'] = i['districtName']
             webCar_data_item['address'] = i['address']
-            webCar_data_item['phone'] = i['tel']
+            webCar_data_item['districtName'] = i['districtName']
+            webCar_data_item['salesTel'] = i['tel']
             yield webCar_data_item
+
