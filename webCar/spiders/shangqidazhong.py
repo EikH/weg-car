@@ -2,6 +2,8 @@ import json
 
 import scrapy
 
+from ..items import WebcarDataItem
+
 
 class ShangqidazhongSpider(scrapy.Spider):
     name = "shangqidazhong"
@@ -11,11 +13,22 @@ class ShangqidazhongSpider(scrapy.Spider):
     url = "https://mall.svw-volkswagen.com/cop-uaa-adapter/api/v1/dealers?&regionCode={}&sort=level&current=1&size=5000"
 
     def parse(self, response):
-        data = json.loads(response.text)["data"]["children"]
+        data = response.json()["data"]["children"]
         for i in data:
-            print(i['code'])
             regionCode = i['code']
             yield scrapy.Request(url=self.url.format(regionCode),callback=self.parse_child)
 
     def parse_child(self,response):
-        print(response.text)
+        data = response.json()['data']['records']
+        for i in data:
+            web_car_data_item = WebcarDataItem()
+            web_car_data_item['dealerName'] = i['orgName']
+            web_car_data_item['provinces'] = i['province']
+            web_car_data_item['city'] = i['city']
+            web_car_data_item['address'] = i['address']
+            web_car_data_item['salesTel'] = i['servicePhone']
+            web_car_data_item['businessHours'] = i['businessHours']
+            web_car_data_item['districtName'] = i['region']
+            yield web_car_data_item
+
+

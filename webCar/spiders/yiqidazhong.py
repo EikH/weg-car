@@ -16,10 +16,10 @@ class DazhongSpider(scrapy.Spider):
         data = data.split('=')[1]
         data = json.loads(data)
         for i in data:
-            webCar_data_item = WebcarDataItem()
-            webCar_data_item['dealerName'] = i['vd_dealerName']
-            webCar_data_item['provinces'] = i['vp_name'].split(" ")[1]
-            webCar_data_item['city'] = i['vc_name']
-            webCar_data_item['address'] = i['vd_address']
-            webCar_data_item['salesTel'] = i['vd_salePhone']
-            yield webCar_data_item
+            web_car_data_item = WebcarDataItem()
+            web_car_data_item['dealerName'] = i['vd_dealerName']
+            web_car_data_item['provinces'] = i['vp_name'].split(" ")[1]
+            web_car_data_item['city'] = i['vc_name']
+            web_car_data_item['address'] = i['vd_address']
+            web_car_data_item['salesTel'] = i['vd_salePhone']
+            yield web_car_data_item

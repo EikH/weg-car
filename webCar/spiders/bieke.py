@@ -12,15 +12,14 @@ class BiekeSpider(scrapy.Spider):
 
     def parse(self, response):
         # 加载数据
-        data = json.loads(response.text)
+        data = response.json()
         for i in data:
-            print(i)
-            webCar_data_item = WebcarDataItem()
-            webCar_data_item['dealerName'] = i['dealerName']
-            webCar_data_item['provinces'] = i['provinceName']
-            webCar_data_item['city'] = i['cityName']
-            webCar_data_item['address'] = i['address']
-            webCar_data_item['districtName'] = i['districtName']
-            webCar_data_item['salesTel'] = i['tel']
-            yield webCar_data_item
+            web_car_data_item = WebcarDataItem()
+            web_car_data_item['dealerName'] = i['dealerName']
+            web_car_data_item['provinces'] = i['provinceName']
+            web_car_data_item['city'] = i['cityName']
+            web_car_data_item['address'] = i['address']
+            web_car_data_item['districtName'] = i['districtName']
+            web_car_data_item['salesTel'] = i['tel']
+            yield web_car_data_item
 

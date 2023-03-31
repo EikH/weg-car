@@ -20,7 +20,7 @@ class WebcarDataItem(scrapy.Item):
     # 销售瘦电话
     salesTel = scrapy.Field()
     # 地区
-    region = scrapy.Field()
+    districtName = scrapy.Field()
     # 售后电话
     afterSalesTel = scrapy.Field()
     # 营业时间
