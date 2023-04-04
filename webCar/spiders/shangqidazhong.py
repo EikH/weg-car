@@ -22,13 +22,25 @@ class ShangqidazhongSpider(scrapy.Spider):
         data = response.json()['data']['records']
         for i in data:
             web_car_data_item = WebcarDataItem()
+            # 省
+            web_car_data_item['provinces'] = i['province'].strip()
+            # 城市
+            web_car_data_item['city'] = i['city'].strip()
+            # 经销商名称
             web_car_data_item['dealerName'] = i['orgName']
-            web_car_data_item['provinces'] = i['province']
-            web_car_data_item['city'] = i['city']
+            # 销售电话
+            web_car_data_item['salesTel'] = i['salesPhone']
+            # 售后电话
+            web_car_data_item['afterSalesTel'] = i['servicePhone']
+            # 地址
             web_car_data_item['address'] = i['address']
-            web_car_data_item['salesTel'] = i['servicePhone']
+            # 营业时间
             web_car_data_item['businessHours'] = i['businessHours']
+            # 地区名称
             web_car_data_item['districtName'] = i['region']
+
             yield web_car_data_item
+
+
 
 

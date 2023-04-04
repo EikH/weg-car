@@ -16,5 +16,9 @@ node_modules
 *.local
 *.log*
 
-# csv
+# csv xlsx
 *.csv
+*.xlsx
+
+# zip
+*.zip

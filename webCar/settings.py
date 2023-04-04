@@ -20,7 +20,7 @@ USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 64
+CONCURRENT_REQUESTS = 128
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -97,4 +97,12 @@ FEED_EXPORT_ENCODING = "utf-8"
 LOG_ENABLED=True
 
 # 日志级别 CRITICAL, ERROR, WARNING, INFO, DEBUG
-LOG_LEVEL='WARNING'
+LOG_LEVEL='DEBUG'
+
+# 最大爬取深度
+DEPTH_LIMIT = 0
+
+DEPTH_PRIORITY = 0
+
+# 包含可以处理的响应
+# HTTPERROR_ALLOWED_CODES = [302,304,301]

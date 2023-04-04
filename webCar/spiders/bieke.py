@@ -15,11 +15,20 @@ class BiekeSpider(scrapy.Spider):
         data = response.json()
         for i in data:
             web_car_data_item = WebcarDataItem()
+            # 省
+            web_car_data_item['provinces'] = i['provinceName'].strip()
+            # 城市
+            web_car_data_item['city'] = i['cityName'].strip()
+            # 经销商名称
             web_car_data_item['dealerName'] = i['dealerName']
-            web_car_data_item['provinces'] = i['provinceName']
-            web_car_data_item['city'] = i['cityName']
-            web_car_data_item['address'] = i['address']
-            web_car_data_item['districtName'] = i['districtName']
+            # 销售瘦电话
             web_car_data_item['salesTel'] = i['tel']
+            # 地址
+            web_car_data_item['address'] = i['address']
+            # 地区名
+            web_car_data_item['districtName'] = i['districtName']
             yield web_car_data_item
+
+
+
 

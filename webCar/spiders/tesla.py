@@ -17,24 +17,36 @@ class TeslaSpider(scrapy.Spider):
 
     def parse_child(self, response):
         data = response.json()
+        # 判断数据是否为空
         if isinstance(data,list):
             print("数据异常")
             return
+
+        # # 判断数据是否为体验店的数据
+        # if len(data["location_type"]) < 2:
+        #     return
+
         web_car_data_item = WebcarDataItem()
-        web_car_data_item['dealerName'] = data['title']
-
+        # 省
         web_car_data_item['provinces'] = data['province_state']
+        # 城市
         web_car_data_item['city'] = data['city']
-        web_car_data_item['address'] = data['address']
-
+        # 经销商名称
+        web_car_data_item['dealerName'] = data['title']
         # 电话号码
         phone = ""
         for j in data['sales_phone']:
-            phone = "{}{}:{},".format(phone,j['label'],j['number'])
-
+            phone = "{}{}:{},".format(phone,j['label'].strip(),j['number'].strip())
         web_car_data_item['salesTel'] = phone
-        try:
-            web_car_data_item['businessHours'] = data['hours'].replace('<p><strong>','').replace("</strong><br />",":").replace("</p>",",")
-        except:
-            web_car_data_item['businessHours'] = "无"
+        # # 营业时间
+        # try:
+        #     web_car_data_item['businessHours'] = data['hours'].replace('<p><strong>','').replace("</strong><br />",":").replace(
+        #         "</p>", ",")
+        # except:
+        #     web_car_data_item['businessHours'] = "无"
+        # 地址
+        web_car_data_item['address'] = data['address'].strip()
+
         yield web_car_data_item
+
+
