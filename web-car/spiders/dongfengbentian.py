@@ -14,7 +14,7 @@ class DongfengbentianSpider(scrapy.Spider):
         provinces_id = response.xpath('//*[@id="province"]/option/@province_id')
         provinces = response.xpath('//*[@id="province"]/option/text()')[1:]
 
-        bodys = {
+        body = {
             "dealer_type": "dot_query",
             "ajax": "true"
         }
@@ -24,7 +24,7 @@ class DongfengbentianSpider(scrapy.Spider):
             province_id = index.get()
             province = value.get()
 
-            yield scrapy.FormRequest(url=url.format(province_id), formdata=bodys, callback=self.city_parse, meta={
+            yield scrapy.FormRequest(url=url.format(province_id), formdata=body, callback=self.city_parse, meta={
                 "province": province
             })
 

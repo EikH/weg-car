@@ -2,32 +2,23 @@ import scrapy
 
 from ..items import WebcarDataItem
 
-class HafoSpider(scrapy.Spider):
-    name = "hafo"
-    allowed_domains = ["www.haval.com.cn","cmsmanage-siteapi.gwm.com.cn"]
+class WeipaiSpider(scrapy.Spider):
 
+    name = "weipai"
+    allowed_domains = ["www.wey.com","cmsmanage-siteapi.gwm.com.cn"]
     start_urls = ["https://cmsmanage-siteapi.gwm.com.cn/dealer/province-zh","https://cmsmanage-siteapi.gwm.com.cn/dealer/city-zh","https://cmsmanage-siteapi.gwm.com.cn/dealer/dealer-zh"]
 
-    # 请求数据必须字段
-    # {
-    #     "city": "长沙市",
-    #     "dealer_type": 1,
-    #     "site_id": "aGqZxcudmMbFb8eem5SXZWOalZafasRql2xpcpual8Zwlp0=",
-    #     "province": "湖南省",
-    #
-    # }
-
     def start_requests(self):
-        border = {
-            "dealer_type": "1",
+        body = {
+            "dealer_type": "2",
         }
-        yield scrapy.FormRequest(url=self.start_urls[0], formdata=border, callback=self.province_requests)
+        yield scrapy.FormRequest(url=self.start_urls[0], formdata=body, callback=self.province_requests)
 
     def province_requests(self, response):
         data = response.json()["data"]
         for i in data:
             border = {
-                "dealer_type": "1",
+                "dealer_type": "2",
                 "province": i['province'],
             }
             yield scrapy.FormRequest(url=self.start_urls[1], formdata=border, callback=self.city_requests)
@@ -36,7 +27,7 @@ class HafoSpider(scrapy.Spider):
         data = response.json()["data"]
         for i in data:
             border = {
-                "dealer_type": "1",
+                "dealer_type": "2",
                 "city": i['city'],
             }
             yield scrapy.FormRequest(url=self.start_urls[2], formdata=border, callback=self.data_requests)
@@ -59,6 +50,3 @@ class HafoSpider(scrapy.Spider):
             # 地区
             web_car_data_item['districtName'] = i['county']
             yield web_car_data_item
-
-
-

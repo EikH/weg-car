@@ -79,6 +79,9 @@ def data_process(file_path,out_path):
     # 删除所有空列
     df.dropna(axis=1, how='all', inplace=True)
 
+    # 去重
+    df = df.drop_duplicates(subset=['经销商名'])
+
     # 重排序列顺序
     df = df.reindex(columns=['省', '城市', '经销商名', "销售电话"])
 

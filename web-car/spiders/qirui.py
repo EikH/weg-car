@@ -12,10 +12,10 @@ class QiruiSpider(scrapy.Spider):
         data = response.json()
         url = "https://www.chery.cn/Umbraco/Surface/ajax/GetCitysByProvinceId"
         for i in data:
-            border = {
+            body = {
                 "provinceid": i['PROVINCE_ID']
             }
-            yield scrapy.FormRequest(url=url, formdata=border, callback=self.province_parse, meta={
+            yield scrapy.FormRequest(url=url, formdata=body, callback=self.province_parse, meta={
                 "province": i["PROVINCE_NAME"],
                 "provinceid": i['PROVINCE_ID']
             })

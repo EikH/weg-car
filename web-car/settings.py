@@ -1,4 +1,4 @@
-# Scrapy settings for webCar project
+# Scrapy settings for web-car project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "webCar"
+BOT_NAME = "web-car"
 
-SPIDER_MODULES = ["webCar.spiders"]
-NEWSPIDER_MODULE = "webCar.spiders"
+SPIDER_MODULES = ["web-car.spiders"]
+NEWSPIDER_MODULE = "web-car.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -27,11 +27,11 @@ CONCURRENT_REQUESTS = 128
 # See also autothrottle settings and docs
 DOWNLOAD_DELAY = 1
 # The download delay setting will honor only one of:
-#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+CONCURRENT_REQUESTS_PER_DOMAIN = 64
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+# COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -39,19 +39,19 @@ DOWNLOAD_DELAY = 1
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-   "Accept-Language": "en",
+   "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
 }
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "webCar.middlewares.WebcarSpiderMiddleware": 543,
+#    "web-car.middlewares.WebcarSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "webCar.middlewares.WebcarDownloaderMiddleware": 543,
+#    "web-car.middlewares.WebcarDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "webCar.pipelines.WebcarPipeline": 300,
+#    "web-car.pipelines.WebcarPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
